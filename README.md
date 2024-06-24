@@ -1,2 +1,2 @@
-# karpathy-course
-My code that follows along with Andrej Karpathy's Zero to Hero Machine Learning and Neural Networks course on YouTube
+# autograd-clone
+A follow-along repo of Andrej Karpathy's " The spelled-out intro to neural networks and backpropagation: building micrograd"
