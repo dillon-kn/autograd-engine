@@ -1,4 +1,4 @@
-# autograd
+# Autograd Engine
 
 Following along Andrej Karpathy's online course, I constructed an AutoGradient Engine that can dynamically construct directed acyclics graphs (DAGs) to perform binary classification using scalar-valued operations with a PyTorch-like API.
 
