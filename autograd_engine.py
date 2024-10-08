@@ -207,7 +207,7 @@ def parse_data(filename="general_amps.xlsx"):
     padded_sequences = [seq + [''] * (max_length - len(seq)) for seq in sequences]
 
     # Encode sequences using one-hot encodings
-    encoder = OneHotEncoder(sparse=False, categories=[unique_chars]*max_length)
+    encoder = OneHotEncoder(sparse_output=False, categories=[unique_chars]*max_length)
     encoded_sequences = encoder.fit_transform(padded_sequences)
 
     # Split data into 70% train, 30% test
