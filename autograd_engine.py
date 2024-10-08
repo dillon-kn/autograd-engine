@@ -93,18 +93,22 @@ class Value:
     def backward(self):
         topo = [] # init list to contain all nodes
         visited = set()
-        # recursively build tree by adding node children to queue, adding current node to topo
-        # then running build topo on each child in queue
-        # note: it's a dfs construction
-        def build_topo(v): 
-            if v not in visited: 
+        stack = [self]
+        
+        # iteratively build tree
+        while stack:
+            v = stack[-1]
+            if v not in visited:
                 visited.add(v)
-                for child in v._prev: 
-                    build_topo(child) # run build topo on children
-                topo.append(v) # add current node to topo
-        build_topo(self)
-
+                for child in v._prev:
+                    if child not in visited:
+                        stack.append(child)
+            else:
+                stack.pop()
+                topo.append(v)
+        
         self.grad = 1.0
+
         # starting from the very first nodes, run backward function on each
         for node in reversed(topo):
             node._backward()
