@@ -78,7 +78,7 @@ class Value:
         return out
     
     def tanh(self):
-        t = np.tanh()
+        t = np.tanh(self.data)
         out = Value(t, (self, ), 'tanh')
 
         def _backward():
