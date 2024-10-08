@@ -178,14 +178,14 @@ class MLP: # multi-layer perceptron
         for p in self.parameters():
             p.grad = np.zeros_like(p.data)
 
-def parse_data():
+def parse_data(filename="general_amps.xlsx"):
     # To validate amino acid sequencing data
     def is_valid_sequence(seq):
         valid_chars = set("ACDEFGHIKLMNPQRSTVWY")
         return all(char in valid_chars for char in seq.upper())
 
     # Load, parse, and preprocess data
-    data = pd.read_excel("general_amps.xlsx")
+    data = pd.read_excel(filename)
 
     # Filter out non-string sequences and invalid sequences
     valid_data = [(seq.upper(), label) for seq, label in zip(data['Sequence'], data['Activity']) 
