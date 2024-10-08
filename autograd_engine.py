@@ -169,7 +169,7 @@ class MLP: # multi-layer perceptron
     def __call__(self, x):
         for layer in self.layers: # feed forward through each layer
             x = layer(x) # get activations of each neuron in the layer
-        return x
+        return x if isinstance(x, Value) else Value(x)
     
     def parameters(self):
         return [p for layer in self.layers for neuron in layer.neurons for p in neuron.w + [neuron.b]]
@@ -250,7 +250,7 @@ def train(model, X, y, learning_rate=0.01, epochs=100, batch_size=32):
             y_batch = y_shuffled[i:i+batch_size]
 
             # Forward pass
-            y_pred = np.array([model(x)._data for x in X_batch])
+            y_pred = np.array([model(x).data for x in X_batch])
 
             # Compute loss
             loss = binary_cross_entropy(y_batch, y_pred)
